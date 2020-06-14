@@ -1,3 +1,36 @@
+namespace myTiles {
+    //% blockIdentity=images._tile
+    export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+}
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile0, function (sprite, location) {
+	
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    music.magicWand.play()
+    game.over(true)
+    game.reset()
+})
+info.onLifeZero(function () {
+	
+})
 effects.clouds.startScreenEffect()
 scene.setBackgroundImage(img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -209,5 +242,21 @@ mySprite.setPosition(18, 13)
 if (mySprite.overlapsWith(mySprite2)) {
 	
 } else {
-	
+    mySprite2.startEffect(effects.fire)
 }
+tiles.setWallAt(tiles.getTileLocation(30, 50), true)
+scene.cameraFollowSprite(mySprite)
+game.showLongText("You can't catch me little man!(Press any button to begin)", DialogLayout.Bottom)
+info.startCountdown(15)
+forever(function () {
+    mySprite4.setVelocity(29, -69)
+    mySprite3.setVelocity(-35, 50)
+})
+forever(function () {
+    for (let index = 0; index < 4; index++) {
+        mySprite2.setVelocity(55, -56)
+    }
+    for (let index = 0; index < 4; index++) {
+        mySprite2.setVelocity(74, 50)
+    }
+})
